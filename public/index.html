@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0B2A4A">
+  <meta name="description" content="পরিবারের আয়-ব্যয়, সঞ্চয় ও মাসিক বাজেটের প্রিমিয়াম বাংলা ফাইন্যান্সিয়াল ড্যাশবোর্ড">
+  <title>পরিবারের হিসাব | আধুনিক বাংলা আয়-ব্যয় ট্র্যাকার</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <!-- ================= ULTRA-PROFESSIONAL FINTECH HEADER / NAVBAR ================= -->
+  <header class="app-nav" role="banner">
+    <div class="nav-container">
+
+      <!-- BRAND IDENTITY -->
+      <div class="brand" id="brandHome" role="button" tabindex="0" title="ড্যাশবোর্ডে ফিরে যান">
+        <div class="brand-badge" aria-hidden="true">
+          <span class="brand-symbol">৳</span>
+          <div class="brand-badge-glow"></div>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title-wrap">
+            <strong id="displayFamilyName">পরিবারের হিসাব</strong>
+          </div>
+          <div class="brand-status-chip">
+            <span class="live-pulse-dot" aria-hidden="true"></span>
+            <span class="brand-tag">Family Finance OS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESKTOP SEGMENTED NAVIGATION CONTROL -->
+      <nav class="nav-menu" aria-label="প্রধান নেভিগেশন">
+        <div class="nav-segmented">
+          <button class="nav-btn active" data-view="dashboard" id="navDashboard" title="ড্যাশবোর্ড ওভারভিউ">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+            <span>ড্যাশবোর্ড</span>
+          </button>
+          <button class="nav-btn" data-view="transactions" id="navTransactions" title="আয় ও ব্যয়ের সম্পূর্ণ তালিকা">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"/></svg>
+            <span>আয়-খরচ</span>
+            <span class="nav-badge" id="navTxBadge" title="মোট সংরক্ষিত লেনদেন">০</span>
+          </button>
+          <button class="nav-btn" data-view="reports" id="navReports" title="মাসিক ও বার্ষিক আর্থিক রিপোর্ট">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+            <span>রিপোর্ট</span>
+          </button>
+          <button class="nav-btn" data-view="backup" id="navBackup" title="ডেটা সুরক্ষা ও ক্লাউড ব্যাকআপ">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 16.2A4.5 4.5 0 0 0 17.5 8h-1.8A7 7 0 1 0 4 14.9M12 12v9m0-9l-3 3m3-3l3 3"/></svg>
+            <span>ব্যাকআপ</span>
+            <span class="nav-cloud-dot" id="navCloudIndicator" title="ড্রাইভ ব্যাকআপ অবস্থা"></span>
+          </button>
+          <button class="nav-btn" data-view="settings" id="navSettings" title="অ্যাপ্লিকেশন সেটিংস ও পছন্দ">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <span>সেটিংস</span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- RIGHT UTILITIES & QUICK ACTION CTA -->
+      <div class="nav-meta">
+        <!-- Live Balance Quick Chip -->
+        <div class="nav-balance-chip" id="navBalanceChip" role="button" tabindex="0" title="বর্তমান স্থিতি (ব্যালেন্স) ও রিপোর্ট দেখুন">
+          <span class="nav-balance-chip-label">ব্যালেন্স</span>
+          <strong class="nav-balance-chip-val" id="navBalanceVal">৳০</strong>
+        </div>
+
+        <!-- Live Bengali Date Pill -->
+        <div class="live-date-pill" id="liveDatePill" title="আজকের তারিখ">
+          <svg class="date-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span id="liveDateText">--</span>
+        </div>
+
+        <!-- Primary Call-to-Action: New Transaction (Desktop/Tablet) -->
+        <button class="nav-cta-btn" id="headerQuickAdd" title="নতুন লেনদেন যুক্ত করুন (কীবোর্ডে + বা N চাপুন)">
+          <span class="cta-icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+          <span class="cta-text">নতুন লেনদেন</span>
+          <kbd class="cta-kbd-hint" title="কীবোর্ড শর্টকাট">+</kbd>
+        </button>
+
+        <!-- Mobile Header Settings Gear Icon Button (≤ 768px) -->
+        <button class="mobile-settings-btn nav-btn" data-view="settings" id="mobHeaderSettings" title="অ্যাপ সেটিংস" aria-label="অ্যাপ্লিকেশন সেটিংস">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main class="app-main" id="mainContainer">
+
+    <!-- SUB-HEADER BAR -->
+    <section class="section-topbar">
+      <div class="topbar-info">
+        <div class="topbar-eyebrow" id="pageEyebrow">FAMILY FINANCE DASHBOARD</div>
+        <h1 class="topbar-title" id="pageTitle">ড্যাশবোর্ড</h1>
+      </div>
+      <div class="topbar-controls">
+        <div class="balance-pill" id="quickBalancePill" title="বর্তমান স্থিতি">
+          <span class="pill-label">ব্যালেন্স:</span>
+          <strong id="topbarBalance">৳০</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. DASHBOARD VIEW -->
+    <section id="dashboardView" class="view-panel active-view">
+      <!-- FILTER & PERIOD BAR -->
+      <div class="dash-filter-bar">
+        <div class="filter-group">
+          <label for="dashYear" class="filter-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>বছর:</span>
+          </label>
+          <select id="dashYear" class="custom-select"></select>
+        </div>
+
+        <div class="filter-group">
+          <label for="dashMonth" class="filter-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>মাস:</span>
+          </label>
+          <select id="dashMonth" class="custom-select">
+            <option value="all">সব মাস (পুরো বছর)</option>
+          </select>
+        </div>
+
+        <button class="dash-btn-ghost" id="resetFilter" title="বর্তমান মাসে রিসেট করুন">
+          <span>চলতি মাস</span>
+        </button>
+
+        <div class="filter-summary-chip" id="periodChip">
+          <span id="periodChipText">পুরো বছরের হিসাব</span>
+        </div>
+      </div>
+
+      <!-- EIGHT 3D DASHBOARD CARDS (4 COLUMNS x 2 ROWS ON DESKTOP) -->
+      <div class="cards-grid-8" aria-label="৮টি প্রধান ড্যাশবোর্ড কার্ড">
+
+        <!-- CARD 1: মোট আয় -->
+        <div class="card-3d card-green" id="cardIncome" role="button" tabindex="0" title="আয়ের তালিকা দেখতে ক্লিক করুন">
+          <div class="card-glass-specular"></div>
+          <div class="card-head">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </div>
+            <span class="card-badge">মোট আয়</span>
+          </div>
+          <div class="card-body">
+            <span class="card-label">মোট আয়</span>
+            <strong class="card-amount" id="totalIncome">৳০</strong>
+            <p class="card-subtext">নির্বাচিত সময়ের মোট পারিবারিক আয়</p>
+          </div>
+          <div class="card-footer-action">
+            <span>আয়ের হিসাব দেখুন</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+          <div class="card-orb"></div>
+        </div>
+
+        <!-- CARD 2: মোট খরচ -->
+        <div class="card-3d card-orange" id="cardExpense" role="button" tabindex="0" title="খরচের তালিকা দেখতে ক্লিক করুন">
+          <div class="card-glass-specular"></div>
+          <div class="card-head">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="7" x2="17" y2="17"/><polyline points="17 7 17 17 7 17"/></svg>
+            </div>
+            <span class="card-badge">মোট ব্যয়</span>
+          </div>
+          <div class="card-body">
+            <span class="card-label">মোট খরচ</span>
+            <strong class="card-amount" id="totalExpense">৳০</strong>
+            <p class="card-subtext" id="expenseBudgetStatus">নির্বাচিত সময়ের পারিবারিক ব্যয়</p>
+          </div>
+          <div class="card-footer-action">
+            <span>খরচের হিসাব দেখুন</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+          <div class="card-orb"></div>
+        </div>
+
+        <!-- CARD 3: বর্তমান ব্যালেন্স -->
+        <div class="card-3d card-blue" id="cardBalance" role="button" tabindex="0" title="ব্যালেন্স ও রিপোর্ট দেখতে ক্লিক করুন">
+          <div class="card-glass-specular"></div>
+          <div class="card-head">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            </div>
+            <span class="card-badge">স্থিতি</span>
+          </div>
+          <div class="card-body">
+            <span class="card-label">বর্তমান ব্যালেন্স</span>
+            <strong class="card-amount" id="totalBalance">৳০</strong>
+            <p class="card-subtext" id="balanceStatusText">আয় থেকে খরচ বাদে অবশিষ্ট</p>
+          </div>
+          <div class="card-footer-action">
+            <span>সঞ্চিত স্থিতি বিবরণ</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+          <div class="card-orb"></div>
+        </div>
+
+        <!-- CARD 4: মোট লেনদেন -->
+        <div class="card-3d card-purple" id="cardCount" role="button" tabindex="0" title="সম্পূর্ণ লেনদেনের তালিকা দেখতে ক্লিক করুন">
+          <div class="card-glass-specular"></div>
+          <div class="card-head">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <span class="card-badge">রেকর্ড</span>
+          </div>
+          <div class="card-body">
+            <span class="card-label">মোট লেনদেন</span>
+            <strong class="card-amount" id="totalCount">০ টি</strong>
+            <p class="card-subtext">নির্বাচিত সময়ে সংরক্ষিত হিসাব</p>
+          </div>
+          <div class="card-footer-action">
+            <span>সকল হিসাব তালিকা</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+          <div class="card-orb"></div>
+        </div>
+
+        <!-- CARD 5: আয় যোগ করুন -->
+        <div class="card-3d card-emerald card-action" id="cardAddIncome" role="button" tabindex="0" title="নতুন আয়ের হিসাব যোগ করুন">
+          <div class="card-glass-specular"></div>
+          <div class="card-head">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+            <span class="card-badge">নতুন এন্ট্রি</span>
+          </div>
+          <div class="card-body">
+            <span class="card-label">আয় যোগ করুন</span>
+            <strong class="card-action-title">＋ নতুন আয়</strong>
+            <p class="card-subtext">বেতন, ব্যবসা, ভাড়া বা অন্য যে কোনো আয় লিখুন</p>
+          </div>
+          <div class="card-footer-action">
+            <span>ফরম খুলুন</span>
+            <span class="card-action-plus">＋</span>
+          </div>
+          <div class="card-orb"></div>
+        </div>
+
+        <!-- CARD 6: খরচ যোগ করুন -->
+        <div class="card-3d card-coral card-action" id="cardAddExpense" role="button" tabindex="0" title="নতুন খরচের হিসাব যোগ করুন">
+          <div class="card-glass-specular"></div>
+          <div class="card-head">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+            <span class="card-badge">নতুন এন্ট্রি</span>
+          </div>
+          <div class="card-body">
+            <span class="card-label">খরচ যোগ করুন</span>
+            <strong class="card-action-title">− নতুন খরচ</strong>
+            <p class="card-subtext">বাজার, বাসা ভাড়া, বিল, চিকিৎসা বা সংসার খরচ</p>
+          </div>
+          <div class="card-footer-action">
+            <span>ফরম খুলুন</span>
+            <span class="card-action-plus">−</span>
+          </div>
+          <div class="card-orb"></div>
+        </div>
+
+        <!-- CARD 7: রিপোর্ট ও হিসাব -->
+        <div class="card-3d card-cyan card-action" id="cardOpenReports" role="button" tabindex="0" title="মাসিক ও বার্ষিক রিপোর্ট দেখুন">
+          <div class="card-glass-specular"></div>
+          <div class="card-head">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+            </div>
+            <span class="card-badge">বিশ্লেষণ</span>
+          </div>
+          <div class="card-body">
+            <span class="card-label">রিপোর্ট ও হিসাব</span>
+            <strong class="card-action-title">বার্ষিক রিপোর্ট</strong>
+            <p class="card-subtext">মাসভিত্তিক তুলনা, খাতভিত্তিক গ্রাফ ও প্রিন্ট</p>
+          </div>
+          <div class="card-footer-action">
+            <span>রিপোর্ট সেকশন</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+          <div class="card-orb"></div>
+        </div>
+
+        <!-- CARD 8: ব্যাকআপ ও ডেটা -->
+        <div class="card-3d card-navy card-action" id="cardOpenBackup" role="button" tabindex="0" title="ডেটা ব্যাকআপ ও রিস্টোর করুন">
+          <div class="card-glass-specular"></div>
+          <div class="card-head">
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <span class="card-badge">নিরাপত্তা</span>
+          </div>
+          <div class="card-body">
+            <span class="card-label">ব্যাকআপ ও ডেটা</span>
+            <strong class="card-action-title">সুরক্ষা ও Drive</strong>
+            <p class="card-subtext">JSON ফাইল ও Google Drive ক্লাউড ব্যাকআপ</p>
+          </div>
+          <div class="card-footer-action">
+            <span>ব্যাকআপ সেকশন</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+          <div class="card-orb"></div>
+        </div>
+
+      </div>
+
+      <!-- DASHBOARD VISUAL INSIGHTS (CHARTS & RECENT TRANSACTIONS) -->
+      <div class="dash-insights-grid">
+        <!-- Monthly Chart Panel -->
+        <div class="dash-panel chart-panel">
+          <div class="dash-panel-header">
+            <div>
+              <h3 class="panel-heading-title">মাসভিত্তিক আয় বনাম ব্যয়</h3>
+              <p class="panel-heading-sub">নির্বাচিত বছরের বার চার্ট ও তুলনা</p>
+            </div>
+            <div class="chart-legend">
+              <span class="legend-item"><i class="legend-dot dot-income"></i> আয়</span>
+              <span class="legend-item"><i class="legend-dot dot-expense"></i> ব্যয়</span>
+            </div>
+          </div>
+          <div id="monthlyChart" class="dash-chart-container" role="region" aria-label="মাসভিত্তিক চার্ট"></div>
+        </div>
+
+        <!-- Category Breakdown Panel -->
+        <div class="dash-panel category-panel">
+          <div class="dash-panel-header">
+            <div>
+              <h3 class="panel-heading-title">শীর্ষ খরচের খাত</h3>
+              <p class="panel-heading-sub">কোথায় বেশি টাকা ব্যয় হচ্ছে</p>
+            </div>
+          </div>
+          <div id="categoryChart" class="dash-category-list"></div>
+        </div>
+      </div>
+
+      <!-- RECENT TRANSACTIONS PREVIEW -->
+      <div class="dash-panel recent-panel">
+        <div class="dash-panel-header">
+          <div>
+            <h3 class="panel-heading-title">সাম্প্রতিক হিসাব</h3>
+            <p class="panel-heading-sub">সর্বশেষ এন্ট্রি করা লেনদেনসমূহ</p>
+          </div>
+          <button class="dash-link-btn" id="viewAllRecentBtn">সকল হিসাব দেখুন →</button>
+        </div>
+        <div id="recentTableWrap" class="table-container"></div>
+      </div>
+    </section>
+
+    <!-- 2. TRANSACTIONS MANAGEMENT VIEW -->
+    <section id="transactionsView" class="view-panel">
+      <div class="section-toolbar">
+        <div>
+          <h2 class="section-heading">আয় ও ব্যয়ের সম্পূর্ণ তালিকা</h2>
+          <p class="section-subtext">সকল লেনদেনের বিস্তারিত দেখুন, খুঁজুন, সম্পাদনা করুন বা CSV ডাউনলোড করুন</p>
+        </div>
+        <div class="toolbar-actions">
+          <button class="btn-primary" id="addTransactionBtn">＋ নতুন হিসাব যোগ করুন</button>
+        </div>
+      </div>
+
+      <div class="dash-panel table-panel">
+        <!-- SEARCH & FILTER BAR -->
+        <div class="table-filter-bar">
+          <div class="search-input-wrap">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="searchInput" placeholder="খাত, বিবরণ বা পেমেন্ট পদ্ধতি দিয়ে খুঁজুন…" aria-label="লেনদেন খুঁজুন">
+            <button class="clear-search-btn hidden" id="clearSearchBtn" title="অনুসন্ধান মুছুন">×</button>
+          </div>
+
+          <div class="filter-controls-row">
+            <select id="typeFilter" class="custom-select" aria-label="ধরনের ফিল্টার">
+              <option value="all">সব ধরন (আয় ও ব্যয়)</option>
+              <option value="income">শুধু আয় (+)</option>
+              <option value="expense">শুধু খরচ (−)</option>
+            </select>
+
+            <select id="categoryFilter" class="custom-select" aria-label="খাতের ফিল্টার">
+              <option value="all">সব খাত</option>
+            </select>
+
+            <select id="yearFilter" class="custom-select" aria-label="বছরের ফিল্টার"></select>
+
+            <select id="monthFilter" class="custom-select" aria-label="মাসের ফিল্টার">
+              <option value="all">সব মাস</option>
+            </select>
+
+            <button class="btn-secondary" id="exportCsv" title="বর্তমান তালিকা CSV ফাইলে ডাউনলোড করুন">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>CSV ডাউনলোড</span>
+            </button>
+
+            <label class="btn-secondary file-upload-btn" title="CSV ফাইল থেকে হিসাব Import করুন">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span>CSV Import</span>
+              <input type="file" id="importCsvFile" accept=".csv,text/csv" hidden>
+            </label>
+          </div>
+        </div>
+
+        <!-- FILTER STATS STRIP -->
+        <div class="table-stats-strip" id="tableStatsStrip">
+          <div class="stat-pill"><span class="pill-title">মোট পাওয়া গেছে:</span> <strong id="filterCount">০ টি</strong></div>
+          <div class="stat-pill text-green"><span class="pill-title">মোট আয়:</span> <strong id="filterIncome">৳০</strong></div>
+          <div class="stat-pill text-orange"><span class="pill-title">মোট খরচ:</span> <strong id="filterExpense">৳০</strong></div>
+          <div class="stat-pill text-blue"><span class="pill-title">পার্থক্য:</span> <strong id="filterNet">৳০</strong></div>
+        </div>
+
+        <!-- TRANSACTIONS TABLE -->
+        <div id="transactionsTableWrap" class="table-container"></div>
+      </div>
+    </section>
+
+    <!-- 3. REPORTS VIEW -->
+    <section id="reportsView" class="view-panel">
+      <div class="section-toolbar">
+        <div>
+          <h2 class="section-heading">আয়-ব্যয় রিপোর্ট ও আর্থিক পরিসংখ্যান</h2>
+          <p class="section-subtext">মাসিক ও বার্ষিক হিসাবের স্বয়ংক্রিয় সারাংশ ও প্রিন্ট কপি</p>
+        </div>
+        <div class="toolbar-actions">
+          <div class="filter-group">
+            <label for="reportYear" class="filter-label">বছর:</label>
+            <select id="reportYear" class="custom-select"></select>
+          </div>
+          <button class="btn-primary" id="printReportBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            <span>⎙ রিপোর্ট প্রিন্ট</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- REPORT SUMMARY METRIC CARDS -->
+      <div class="report-cards-grid" id="reportSummaryCards"></div>
+
+      <!-- ANNUAL MONTHLY BREAKDOWN TABLE -->
+      <div class="dash-panel">
+        <div class="dash-panel-header">
+          <div>
+            <h3 class="panel-heading-title">১২ মাসের বিস্তারিত হিসাব</h3>
+            <p class="panel-heading-sub">প্রতি মাসের আয়, ব্যয় ও সঞ্চিত স্থিতির তুলনামূলক টেবিল</p>
+          </div>
+        </div>
+        <div id="reportTableWrap" class="table-container"></div>
+      </div>
+
+      <!-- CATEGORY EXPENSE SUMMARY -->
+      <div class="dash-panel">
+        <div class="dash-panel-header">
+          <div>
+            <h3 class="panel-heading-title">খাতভিত্তিক ব্যয়ের সারাংশ</h3>
+            <p class="panel-heading-sub">কোন খাতে কত শতাংশ ও কত টাকা ব্যয় হয়েছে</p>
+          </div>
+        </div>
+        <div id="reportCategoryWrap" class="table-container"></div>
+      </div>
+
+      <!-- DATA EXPORT & IMPORT UTILITIES -->
+      <div class="dash-panel export-util-panel">
+        <div class="export-util-info">
+          <h3 class="panel-heading-title">কম্পিউটারে ডেটা ব্যাকআপ ও রিস্টোর</h3>
+          <p class="panel-heading-sub">সম্পূর্ণ ডেটা JSON ফাইলে সংরক্ষণ করে যেকোনো সময় ফিরিয়ে আনুন</p>
+        </div>
+        <div class="export-util-btns">
+          <button class="btn-secondary" id="exportJsonBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>JSON ব্যাকআপ ডাউনলোড</span>
+          </button>
+          <label class="btn-secondary file-upload-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span>JSON ব্যাকআপ রিস্টোর</span>
+            <input type="file" id="importJsonFile" accept="application/json,.json" hidden>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. BACKUP & GOOGLE DRIVE VIEW -->
+    <section id="backupView" class="view-panel">
+      <div class="section-toolbar">
+        <div>
+          <h2 class="section-heading">ডেটা সুরক্ষা ও ক্লাউড ব্যাকআপ</h2>
+          <p class="section-subtext">আপনার হিসাবের গোপনীয়তা ও সুরক্ষা নিশ্চিত করুন</p>
+        </div>
+      </div>
+
+      <div class="backup-cards-grid">
+        <!-- GOOGLE DRIVE BACKUP PANEL -->
+        <div class="dash-panel backup-main-card">
+          <div class="backup-card-head">
+            <div class="backup-type-badge drive-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 16.2A4.5 4.5 0 0 0 17.5 8h-1.8A7 7 0 1 0 4 14.9M12 12v9m0-9l-3 3m3-3l3 3"/></svg>
+            </div>
+            <div>
+              <h3 class="backup-card-title">Google Drive ক্লাউড ব্যাকআপ</h3>
+              <p class="backup-card-desc">আপনার গুগল অ্যাকাউন্টের <b>Family Expense Backup</b> ফোল্ডারে ফাইল সেভ হবে</p>
+            </div>
+          </div>
+
+          <div class="drive-status-box" id="driveStatusBox">
+            <div class="drive-status-header">
+              <span class="status-indicator-dot" id="statusDot"></span>
+              <strong id="driveStatusHeading">Drive সংযোগ অবস্থা পরীক্ষা করা হচ্ছে…</strong>
+            </div>
+            <p id="driveStatusDetail" class="drive-status-msg">সার্ভার থেকে গুগল ড্রাইভ কনফিগারেশন যাচাই করা হচ্ছে।</p>
+            <div class="account-pill-row">
+              <span class="meta-label">নির্ধারিত অ্যাকাউন্ট:</span>
+              <code class="code-pill">rafiqulislam.globalwork@gmail.com</code>
+            </div>
+          </div>
+
+          <div class="backup-button-row">
+            <button class="btn-primary" id="connectDriveBtn">Google Drive সংযোগ করুন</button>
+            <button class="btn-secondary" id="backupNowBtn">এখনই ক্লাউডে ব্যাকআপ নিন</button>
+            <button class="btn-secondary" id="listBackupsBtn">Drive ব্যাকআপ তালিকা দেখুন</button>
+          </div>
+
+          <div id="driveResultMsg" class="drive-result-alert hidden"></div>
+          <div id="driveFilesList" class="drive-files-container"></div>
+
+          <div class="info-callout">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <div>
+              <strong>নিরাপত্তা তথ্য:</strong> অ্যাপটি আপনার গুগল পাসওয়ার্ড কখনো চাইবে না। শুধুমাত্র অফিসিয়াল গুগল ওঅথ (OAuth) ব্যবহার করে অনুমতিপ্রাপ্ত ফোল্ডারে ব্যাকআপ ফাইল রাখে।
+            </div>
+          </div>
+        </div>
+
+        <!-- LOCAL BROWSER STORAGE PANEL -->
+        <div class="dash-panel backup-main-card">
+          <div class="backup-card-head">
+            <div class="backup-type-badge local-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div>
+              <h3 class="backup-card-title">এই ডিভাইসে লোকাল সংরক্ষণ</h3>
+              <p class="backup-card-desc">আপনার ব্রাউজারের Local Storage-এ স্বয়ংক্রিয়ভাবে সেভ থাকে</p>
+            </div>
+          </div>
+
+          <div class="local-stats-matrix">
+            <div class="local-stat-cell">
+              <span class="cell-label">সংরক্ষিত মোট লেনদেন</span>
+              <strong class="cell-value" id="localTxCount">০ টি</strong>
+            </div>
+            <div class="local-stat-cell">
+              <span class="cell-label">সর্বশেষ পরিবর্তন</span>
+              <strong class="cell-value" id="localLastSaved">এখনো নেই</strong>
+            </div>
+            <div class="local-stat-cell">
+              <span class="cell-label">ডেটা স্টোরেজ অবস্থা</span>
+              <strong class="cell-value text-green">সচল ও নিরাপদ ✓</strong>
+            </div>
+          </div>
+
+          <div class="backup-button-row">
+            <button class="btn-primary" id="localDownloadJsonBtn">JSON ফাইল ডাউনলোড</button>
+            <button class="btn-danger-ghost" id="clearAllDataBtn">সব হিসাব মুছে ফেলুন</button>
+          </div>
+
+          <div class="warning-callout">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <div>
+              <strong>সতর্কতা:</strong> ব্রাউজার ক্যাশ বা হিস্ট্রি ক্লিয়ার করলে লোকাল হিসাব মুছে যেতে পারে। তাই মাসে অন্তত একবার JSON ফাইল ডাউনলোড অথবা Google Drive ব্যাকআপ রাখুন।
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GOOGLE DRIVE STEP-BY-STEP SETUP GUIDE -->
+      <div class="dash-panel setup-guide-panel">
+        <h3 class="panel-heading-title">Google Drive সেটআপ করার সহজ নির্দেশিকা</h3>
+        <ol class="setup-steps-list">
+          <li><b>Google Cloud Console</b> (<a href="https://console.cloud.google.com/" target="_blank" rel="noopener">console.cloud.google.com</a>)-এ লগইন করে একটি নতুন প্রজেক্ট তৈরি করুন।</li>
+          <li><b>APIs & Services</b> থেকে <b>Google Drive API</b> চালু (Enable) করুন।</li>
+          <li><b>OAuth consent screen</b> সেটআপ করুন এবং ইউজার টাইপ External দিন। নিজের গুগল অ্যাকাউন্ট <code>rafiqulislam.globalwork@gmail.com</code> টেস্ট ইউজার হিসেবে যোগ করুন।</li>
+          <li><b>Credentials</b> সেকশনে গিয়ে <b>Create Credentials → OAuth client ID</b> নির্বাচন করুন (Application type: <b>Web application</b>)।</li>
+          <li><b>Authorized redirect URIs</b>-তে যোগ করুন: <code>http://localhost:3000/auth/google/callback</code> (লাইভ সাইটের ক্ষেত্রে ডোমেইন URL)।</li>
+          <li>প্রজেক্টের <code>.env.example</code> ফাইলটি কপি করে <code>.env</code> নামে সেভ করুন এবং প্রাপ্ত <code>GOOGLE_CLIENT_ID</code> ও <code>GOOGLE_CLIENT_SECRET</code> বসান।</li>
+          <li>টার্মিনালে <code>npm start</code> কমান্ড দিয়ে সার্ভার চালু করে উপরে <b>Google Drive সংযোগ করুন</b> বাটনে ক্লিক করুন।</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 5. SETTINGS VIEW -->
+    <section id="settingsView" class="view-panel">
+      <div class="section-toolbar">
+        <div>
+          <h2 class="section-heading">অ্যাপ্লিকেশন সেটিংস ও পছন্দ</h2>
+          <p class="section-subtext">পরিবারের তথ্য, কারেন্সি ও অ্যাপের সাধারণ পছন্দ পরিবর্তন করুন</p>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+        <!-- Family Profile -->
+        <div class="dash-panel">
+          <h3 class="panel-heading-title">পরিবারের তথ্য ও প্রোফাইল</h3>
+          <p class="panel-heading-sub">ড্যাশবোর্ড ও রিপোর্টে প্রদর্শিত হবে</p>
+
+          <form id="settingsForm" class="settings-form">
+            <div class="form-group">
+              <label for="settingFamilyName" class="form-label">পরিবার বা ড্যাশবোর্ডের নাম</label>
+              <input type="text" id="settingFamilyName" class="custom-input" placeholder="যেমন: আমাদের পরিবারের হিসাব" value="পরিবারের হিসাব">
+            </div>
+
+            <div class="form-group">
+              <label for="settingBudgetLimit" class="form-label">মাসিক সর্বোচ্চ খরচের বাজেট লক্ষ্যমাত্রা (৳)</label>
+              <input type="number" id="settingBudgetLimit" class="custom-input" placeholder="যেমন: ৫০০০০" min="0" step="100">
+              <small class="field-hint">বাজেট অতিক্রম করলে ড্যাশবোর্ডে সতর্কতা প্রদর্শিত হবে</small>
+            </div>
+
+            <div class="form-group">
+              <label for="settingDefaultMethod" class="form-label">ডিফল্ট পেমেন্ট মাধ্যম</label>
+              <select id="settingDefaultMethod" class="custom-select">
+                <option value="নগদ">নগদ</option>
+                <option value="বিকাশ">বিকাশ</option>
+                <option value="নগদ (Nagad)">নগদ (Nagad)</option>
+                <option value="রকেট">রকেট</option>
+                <option value="ব্যাংক">ব্যাংক ট্রান্সফার</option>
+                <option value="কার্ড">কার্ড</option>
+                <option value="অন্যান্য">অন্যান্য</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-primary">সেটিংস সংরক্ষণ করুন</button>
+          </form>
+        </div>
+
+        <!-- Sample Data & Storage Status -->
+        <div class="dash-panel">
+          <h3 class="panel-heading-title">নমুনা ডেটা ও সিস্টেম তথ্য</h3>
+          <p class="panel-heading-sub">টেস্টিং এবং সিস্টেম স্ট্যাটাস</p>
+
+          <div class="system-info-box">
+            <div class="info-row">
+              <span>সফটওয়্যার সংস্করণ:</span>
+              <strong>v2.0 (Redesign Premium)</strong>
+            </div>
+            <div class="info-row">
+              <span>মুদ্রা প্রতীক:</span>
+              <strong>টাকা (৳ BDT)</strong>
+            </div>
+            <div class="info-row">
+              <span>লোকাল ব্রাউজার স্টোরেজ কী:</span>
+              <code>familyExpenseTracker.v1</code>
+            </div>
+            <div class="info-row">
+              <span>মোট ডেটা আইটেম:</span>
+              <strong id="settingsTxCount">০ টি</strong>
+            </div>
+          </div>
+
+          <div class="demo-actions-box">
+            <h4>নমুনা হিসাব লোড করুন:</h4>
+            <p>আপনার ড্যাশবোর্ড যদি খালি থাকে এবং সুন্দর গ্রাফ ও রিপোর্ট দেখতে চান, তবে এক ক্লিকে পরীক্ষামূলক পারিবারিক হিসাব লোড করতে পারেন।</p>
+            <div class="button-row">
+              <button type="button" class="btn-secondary" id="loadSampleDataBtn">নমুনা ডেমো ডেটা যোগ করুন</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ================= TRANSACTION MODAL ================= -->
+<div class="modal-backdrop hidden" id="transactionModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <div class="modal-card-head">
+      <div class="modal-title-box">
+        <span class="modal-eyebrow" id="modalEyebrow">TRANSACTION ENTRY</span>
+        <h2 class="modal-title" id="modalTitle">নতুন হিসাব যোগ করুন</h2>
+      </div>
+      <button class="modal-close-btn" id="closeModalBtn" aria-label="বন্ধ করুন">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <form id="transactionForm" class="modal-form" novalidate>
+      <input type="hidden" id="editTxId">
+
+      <!-- TYPE TOGGLE SWITCH -->
+      <div class="type-switch-container">
+        <label class="type-switch-label type-expense-label">
+          <input type="radio" name="txType" value="expense" checked>
+          <span class="type-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>− খরচ (Expense)</span>
+          </span>
+        </label>
+        <label class="type-switch-label type-income-label">
+          <input type="radio" name="txType" value="income">
+          <span class="type-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>＋ আয় (Income)</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="modal-fields-grid">
+        <!-- Date -->
+        <div class="form-group">
+          <label for="txDate" class="form-label">তারিখ <span class="required-star">*</span></label>
+          <input type="date" id="txDate" class="custom-input" required>
+        </div>
+
+        <!-- Amount -->
+        <div class="form-group">
+          <label for="txAmount" class="form-label">টাকার পরিমাণ <span class="required-star">*</span></label>
+          <div class="amount-field-wrap">
+            <span class="currency-symbol">৳</span>
+            <input type="number" id="txAmount" class="custom-input amount-input-field" min="0.01" step="0.01" placeholder="০.০০" required>
+          </div>
+        </div>
+
+        <!-- Category -->
+        <div class="form-group">
+          <label for="txCategory" class="form-label">খাত / ক্যাটাগরি <span class="required-star">*</span></label>
+          <select id="txCategory" class="custom-select" required></select>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="form-group">
+          <label for="txMethod" class="form-label">পেমেন্ট পদ্ধতি</label>
+          <select id="txMethod" class="custom-select">
+            <option value="নগদ">নগদ (Cash)</option>
+            <option value="বিকাশ">বিকাশ (bKash)</option>
+            <option value="নগদ (Nagad)">নগদ (Nagad)</option>
+            <option value="রকেট">রকেট (Rocket)</option>
+            <option value="উপায়">উপায় (Upay)</option>
+            <option value="ব্যাংক">ব্যাংক ট্রান্সফার</option>
+            <option value="কার্ড">কার্ড (Debit/Credit)</option>
+            <option value="অন্যান্য">অন্যান্য</option>
+          </select>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group full-width">
+          <label for="txDescription" class="form-label">বিবরণ / নোট (ঐচ্ছিক)</label>
+          <input type="text" id="txDescription" class="custom-input" maxlength="160" placeholder="যেমন: বাজার সদাই, বিদ্যুৎ বিল, মাসিকের বেতন, ইত্যাদি">
+        </div>
+      </div>
+
+      <div class="modal-actions-bar">
+        <button type="button" class="btn-ghost" id="cancelModalBtn">বাতিল</button>
+        <button type="submit" class="btn-primary" id="saveModalSubmitBtn">
+          <span>হিসাব সংরক্ষণ করুন</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= DELETE CONFIRMATION MODAL ================= -->
+<div class="modal-backdrop hidden" id="deleteConfirmModal" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+  <div class="modal-card modal-card-sm">
+    <div class="modal-alert-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+    </div>
+    <h3 class="modal-alert-title" id="deleteModalTitle">হিসাব মুছে ফেলতে চান?</h3>
+    <p class="modal-alert-desc" id="deleteModalDesc">এই লেনদেনটি স্থায়ীভাবে মুছে ফেলা হবে। আপনি কি নিশ্চিত?</p>
+    <div class="modal-actions-bar">
+      <button type="button" class="btn-ghost" id="cancelDeleteBtn">না, বাতিল</button>
+      <button type="button" class="btn-danger" id="confirmDeleteBtn">হ্যাঁ, মুছে ফেলুন</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= TOAST NOTIFICATION CONTAINER ================= -->
+<div class="toast-hub" id="toastHub" aria-live="polite"></div>
+
+<!-- ================= MOBILE APP BOTTOM NAVIGATION BAR (≤ 768px) ================= -->
+<nav class="mobile-bottom-nav" aria-label="মোবাইল নেভিগেশন">
+  <div class="mobile-nav-inner">
+    <button class="mobile-nav-item nav-btn active" data-view="dashboard" id="mobNavDashboard">
+      <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+      <span class="mobile-nav-label">ড্যাশবোর্ড</span>
+    </button>
+
+    <button class="mobile-nav-item nav-btn" data-view="transactions" id="mobNavTransactions">
+      <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"/></svg>
+      <span class="mobile-nav-label">আয়-খরচ</span>
+    </button>
+
+    <!-- CENTER ELEVATED ACTION BUTTON (FAB) -->
+    <button class="mobile-fab-btn" id="mobileFabAdd" title="নতুন হিসাব লিখুন" aria-label="নতুন লেনদেন যোগ করুন">
+      <div class="mobile-fab-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <span class="mobile-fab-label">নতুন এন্ট্রি</span>
+    </button>
+
+    <button class="mobile-nav-item nav-btn" data-view="reports" id="mobNavReports">
+      <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+      <span class="mobile-nav-label">রিপোর্ট</span>
+    </button>
+
+    <button class="mobile-nav-item nav-btn" data-view="backup" id="mobNavBackup">
+      <svg class="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 16.2A4.5 4.5 0 0 0 17.5 8h-1.8A7 7 0 1 0 4 14.9M12 12v9m0-9l-3 3m3-3l3 3"/></svg>
+      <span class="mobile-nav-label">ব্যাকআপ</span>
+    </button>
+  </div>
+</nav>
+
+<script src="app.js"></script>
+</body>
+</html>

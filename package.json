@@ -1,0 +1,9 @@
+{
+  "name": "family-expense-tracker-bangla",
+  "version": "1.0.0",
+  "description": "Bangla household income and expense tracker with local persistence and optional Google Drive backup",
+  "main": "server/index.js",
+  "scripts": {"start": "node server/index.js"},
+  "dependencies": {"dotenv": "^16.4.7", "express": "^4.21.2", "googleapis": "^144.0.0"},
+  "engines": {"node": ">=18"}
+}
